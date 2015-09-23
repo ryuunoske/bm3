@@ -1,14 +1,16 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-	<head>
-	<title>bm3</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<script type="text/javascript" src="https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&s=1"></script>
-	<script type="text/javascript">
+:javascript
+	$(document).ready(function() {
+		getMap();
+		$('#click').click(function() {
+			LoadSearchModule();
+		});
+	});
+	var credentials = "Aj7xOeHv3mwl4nqgF2ok_aFqUvIJGuYEdBcHreNG_jTbtW0aDuawEI-m8jsyrKpf";
 	var map = null;
 	var searchManager = null;
+	var query;
 	function getMap() {
-		map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'Aj7xOeHv3mwl4nqgF2ok_aFqUvIJGuYEdBcHreNG_jTbtW0aDuawEI-m8jsyrKpf'});
+		map = new Microsoft.Maps.Map(document.getElementById('mapDiv'), {credentials: credentials});
 	}
 	function createSearchManager() {
 			map.addComponent('searchManager', new Microsoft.Maps.Search.SearchManager(map));
@@ -19,10 +21,10 @@
 	}
 	function geocodeRequest() {
 		createSearchManager();
-		var where = 'Denver, CO';
+		query = $('#query').val();
 		var userData = { name: 'Maps Test User', id: 'XYZ' };
 		var request = {
-				where: where,
+				where: query,
 				count: 5,
 				bounds: map.getBounds(),
 				callback: onGeocodeSuccess,
@@ -43,12 +45,3 @@
 		}
 	}
 	function onGeocodeFailed(result, userData) {alert('Geocode failed');}
-	</script>
-	</head>
-	<body onload="getMap();">
-		<div id='myMap' style="position:relative; width:400px; height:400px;"></div>
-		<div>
-				<input type="button" value="Find Address" onclick="LoadSearchModule();" />
-		</div>
-	</body>
-</html>

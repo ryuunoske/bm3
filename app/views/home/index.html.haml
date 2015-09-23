@@ -1,20 +1,10 @@
 .row
 	.input-group
-		.col-lg-2.col-md-2
-			.input-group-btn
-				%button.btn.btn-info#click{:type => "button"} Search
-		.col-lg-2.col-md-2
-			%input.form-control{:type => 'text', :placeholder => 'Street'}
-		.col-lg-2.col-md-2
-			%input.form-control{:type => 'text', :placeholder => 'Town, City'}
-		.col-lg-2.col-md-2
-			%input.form-control{:type => 'text', :placeholder => 'State'}
-		.col-lg-2.col-md-2
-			%input.form-control{:type => 'text','max-length' =>'6', :placeholder => 'Zip-code'}
-		.col-lg-2.col-md-2
-			%input.form-control{:type => 'text', :placeholder => 'Country'}
+		.input-group-btn
+			%button.btn.btn-info#click{:type => "button"} Search
+		%input.form-control#query{:type => 'text', :placeholder => 'Street, town, city, state, zip, country'}
 .row
 	.col-xs-12.col-sm-12.col-md-offset-1.col-lg-offset-1.col-lg-9.col-md-9
-		#myMap{:style => "position:relative; width:100%; height:43em;"}
+		#mapDiv{:style => "position:relative; width:100%; height:43em;"}
 	.col-xs-12.col-sm-12.col-md-3.col-lg-3
 		#directionsItinerary

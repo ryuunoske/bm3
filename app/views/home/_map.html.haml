@@ -1,15 +1,16 @@
 :javascript
-	//var credentials = "Aj7xOeHv3mwl4nqgF2ok_aFqUvIJGuYEdBcHreNG_jTbtW0aDuawEI-m8jsyrKpf";
 	$(document).ready(function() {
 		getMap();
 		$('#click').click(function() {
 			LoadSearchModule();
 		});
 	});
+	var credentials = "Aj7xOeHv3mwl4nqgF2ok_aFqUvIJGuYEdBcHreNG_jTbtW0aDuawEI-m8jsyrKpf";
 	var map = null;
 	var searchManager = null;
+	var query;
 	function getMap() {
-		map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'Aj7xOeHv3mwl4nqgF2ok_aFqUvIJGuYEdBcHreNG_jTbtW0aDuawEI-m8jsyrKpf'});
+		map = new Microsoft.Maps.Map(document.getElementById('mapDiv'), {credentials: credentials});
 	}
 	function createSearchManager() {
 			map.addComponent('searchManager', new Microsoft.Maps.Search.SearchManager(map));
@@ -20,10 +21,10 @@
 	}
 	function geocodeRequest() {
 		createSearchManager();
-		var where = query;
+		query = $('#query').val();
 		var userData = { name: 'Maps Test User', id: 'XYZ' };
 		var request = {
-				where: where,
+				where: query,
 				count: 5,
 				bounds: map.getBounds(),
 				callback: onGeocodeSuccess,

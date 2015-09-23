@@ -56,7 +56,7 @@ gem 'paperclip'
 
 #Ankit Gems
 #gem 'adminlte2-rails'
-gem 'adminlte-rails'
+#gem 'adminlte-rails'
 gem 'ionicons-rails'
 gem 'haml-rails' #Generators generate only haml files not supported by admin-lte generators rails gem
 gem 'haml'

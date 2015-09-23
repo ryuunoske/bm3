@@ -1,0 +1,44 @@
+%script{:charset => "UTF-8", :src => "https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&s=1", :type => "text/javascript"}/
+:javascript
+	var map = null;
+	var pos = null;
+	var pushpin = null;
+	$(document).ready(function(){
+		InitMap();
+		InitPushpin();
+	});
+	function InitMap() {
+		//map options
+		var mapOptions = {
+			credentials: "Aj7xOeHv3mwl4nqgF2ok_aFqUvIJGuYEdBcHreNG_jTbtW0aDuawEI-m8jsyrKpf",
+			mapTypeId: Microsoft.Maps.MapTypeId.road,
+			zoom: 10,
+		};
+		//map initialization
+		map = new Microsoft.Maps.Map(document.getElementById('mapDiv'), mapOptions);
+	}
+	function InitPushpin() {
+		map.entities.clear();
+		var offsetPin = new Microsoft.Maps.Point(0, 5);
+		var pushpinOptions = {text : '1', visible: true, textOffset: offsetPin}; 
+		pushpin = new Microsoft.Maps.Pushpin(map.getCenter(), pushpinOptions);
+		map.entities.push(pushpin);
+		getLocation();
+	}
+	function getLocation() {
+		if (navigator.geolocation) {
+			navigator.geolocation.watchPosition(success, error, {maximumAge: 5000, enableHighAccuracy: true});
+		} else {
+			console.log("Geolocation is not supported by this browser.");
+		}
+	}
+	function error(err) {
+		console.log(err.toString());
+	}
+	function success(position) {
+		var pos = new Microsoft.Maps.Location(position.coords.latitude, position.coords.longitude);
+		var offsetPin = new Microsoft.Maps.Point(0, 5);
+		var pushpinOptions = {text : '1', visible: true, textOffset: offsetPin};
+		pushpin.setLocation(pos);
+		map.setView({center:pushpin.getLocation(),zoom:17});
+	}

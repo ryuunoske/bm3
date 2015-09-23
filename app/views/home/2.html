@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+	<title>Load map with navigation bar module</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+	<script type="text/javascript">
+	var map = null;
+	var searchManager = null;
+	function getMap()
+	{
+		map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'Aj7xOeHv3mwl4nqgF2ok_aFqUvIJGuYEdBcHreNG_jTbtW0aDuawEI-m8jsyrKpf'});
+	}
+	function createSearchManager() 
+	{
+			map.addComponent('searchManager', new Microsoft.Maps.Search.SearchManager(map)); 
+			searchManager = map.getComponent('searchManager'); 
+			alert('Search module loaded'); 
+	}
+	function LoadSearchModule()
+	{
+		Microsoft.Maps.loadModule('Microsoft.Maps.Search', { callback: createSearchManager })
+	}
+	</script>
+	</head>
+	<body onload="getMap();">
+		<div id='myMap' style="position:relative; width:400px; height:400px;"></div>
+		<div>
+				<input type="button" value="LoadSearchModule" onclick="LoadSearchModule();" />
+		</div>
+	</body>
+</html>

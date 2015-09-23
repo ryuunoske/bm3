@@ -1,0 +1,14 @@
+!!!
+%html
+	%head
+		%title Bm1
+		= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+		= javascript_include_tag 'application', 'data-turbolinks-track' => true
+		= csrf_meta_tags
+		%meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+		%meta{:content => "text/html; charset=US-ASCII", "http-equiv" => "Content-Type"}/
+		%script{:charset => "UTF-8", :src => "https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&s=1", :type => "text/javascript"}
+		= render 'map'
+	%body
+		.container
+			= yield

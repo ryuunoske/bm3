@@ -1,5 +1,4 @@
 :javascript
-	var map = null;
 	//var credentials = "Aj7xOeHv3mwl4nqgF2ok_aFqUvIJGuYEdBcHreNG_jTbtW0aDuawEI-m8jsyrKpf";
 	$(document).ready(function() {
 		getMap();
@@ -21,7 +20,7 @@
 	}
 	function geocodeRequest() {
 		createSearchManager();
-		var where = 'Denver, CO';
+		var where = query;
 		var userData = { name: 'Maps Test User', id: 'XYZ' };
 		var request = {
 				where: where,

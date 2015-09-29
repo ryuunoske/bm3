@@ -1,47 +1,42 @@
 :javascript
-	$(document).ready(function() {
-		getMap();
-		$('#click').click(function() {
-			LoadSearchModule();
-		});
-	});
+	// Initialization of Global Variables
 	var credentials = "Aj7xOeHv3mwl4nqgF2ok_aFqUvIJGuYEdBcHreNG_jTbtW0aDuawEI-m8jsyrKpf";
-	var map = null;
-	var searchManager = null;
-	var query;
-	function getMap() {
-		map = new Microsoft.Maps.Map(document.getElementById('mapDiv'), {credentials: credentials});
+	var searchloc, //Search location lat lng stor variable
+			map = null, // map initialization variable
+			gps, // user location variable
+			gpspushpin, // gpspushpin variable
+			directionsManager, // direction manager variable
+			directionsErrorEventObj, // direction error manager variable
+			directionsUpdatedEventObj; // direction update manager variable
+	// End of Global Variable Initialization
+	$(document).ready(function () {
+		search();
+		InitMap();
+	});
+
+	// Sarch Function
+	function search() {
+		$("#searchBox").geocomplete().bind("geocode:result", function(event, result){
+				searchloc = result.geometry.location
+			}).bind("geocode:error", function(event, status){
+				console.log("ERROR: " + status);
+			}).bind("geocode:multiple", function(event, results){
+				console.log("Multiple: " + results.length + " results found");
+		});
+		//$("#click").click(function(){
+		//	$("#searchBox").trigger("geocode");
+		//});
 	}
-	function createSearchManager() {
-			map.addComponent('searchManager', new Microsoft.Maps.Search.SearchManager(map));
-			searchManager = map.getComponent('searchManager');
-	}
-	function LoadSearchModule() {
-		Microsoft.Maps.loadModule('Microsoft.Maps.Search', { callback: geocodeRequest })
-	}
-	function geocodeRequest() {
-		createSearchManager();
-		query = $('#query').val();
-		var userData = { name: 'Maps Test User', id: 'XYZ' };
-		var request = {
-				where: query,
-				count: 5,
-				bounds: map.getBounds(),
-				callback: onGeocodeSuccess,
-				errorCallback: onGeocodeFailed,
-				userData: userData
+	// Map Initialization
+	function InitMap() {
+		//map options
+		var mapOptions = {
+			credentials: credentials,
+			mapTypeId: Microsoft.Maps.MapTypeId.road,
+			zoom: 5,
+			center : new Microsoft.Maps.Location(21.0000, 78.0000),
+			enableSearchLogo: false
 		};
-		searchManager.geocode(request);
+		//map initialization
+		map = new Microsoft.Maps.Map(document.getElementById('mapDiv'), mapOptions);
 	}
-	function onGeocodeSuccess(result, userData) {
-		if (result) { 
-			map.entities.clear();
-			var topResult = result.results && result.results[0];
-			if (topResult) {
-					var pushpin = new Microsoft.Maps.Pushpin(topResult.location, null);
-					map.setView({ center: topResult.location, zoom: 10 });
-					map.entities.push(pushpin);
-			}
-		}
-	}
-	function onGeocodeFailed(result, userData) {alert('Geocode failed');}

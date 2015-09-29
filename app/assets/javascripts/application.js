@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
+//= require jquery.geocomplete
 //= require bootstrap-sprockets
 //= require admin-lte
 //= require turbolinks

@@ -1,8 +1,12 @@
 .row
-	.input-group
-		.input-group-btn
-			%button.btn.btn-info#click{:type => "button"} Search
-		%input.form-control#query{:type => 'text', :placeholder => 'Street, town, city, state, zip, country'}
+	.form-group.inline
+		.col-xs-12.col-sm-12.col-md-2.col-lg-2
+			%button.btn.btn-success#gps{:type => 'button'} Get Your Location
+		.input-group.col-xs-12.col-sm-12.col-md-10.col-lg-10
+			.input-group-btn
+				%button.btn.btn-info#click{:type => "button"} Search
+			/ Search id searchBox instead of just search
+			%input.form-control#searchBox{:type => 'text', :placeholder => 'Street, town, city, state, zip, country'}
 .row
 	.col-xs-12.col-sm-12.col-md-offset-1.col-lg-offset-1.col-lg-9.col-md-9
 		#mapDiv{:style => "position:relative; width:100%; height:43em;"}

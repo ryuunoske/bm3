@@ -8,6 +8,7 @@
 		%meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
 		%meta{:content => "text/html; charset=US-ASCII", "http-equiv" => "Content-Type"}/
 		%script{:charset => "UTF-8", :src => "https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&s=1", :type => "text/javascript"}
+		%script{:charset => 'UTF-8' ,:src => 'http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places', :type => 'text/javascript'}
 		= render 'map'
 	%body
 		.container

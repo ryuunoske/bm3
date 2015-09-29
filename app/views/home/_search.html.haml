@@ -21,7 +21,8 @@
 	}
 	function geocodeRequest() {
 		createSearchManager();
-		query = $('#query').val();
+		//query replaced with searchBox 
+		query = $('#searchBox').val();
 		var userData = { name: 'Maps Test User', id: 'XYZ' };
 		var request = {
 				where: query,

@@ -60,10 +60,10 @@ gem 'paperclip'
 gem 'ionicons-rails'
 gem 'haml-rails' #Generators generate only haml files not supported by admin-lte generators rails gem
 gem 'haml'
-#gem 'ionicons-rails'
 gem 'font-awesome-rails'
 gem 'erb2haml', :group => :development
 gem 'geocoder'
+gem 'jquery-ui-rails'
 gem 'gon'
 #gem 'gmaps4rails' #Gem has Some bugs with not supporting the way google api reference works
 #End Ankit Gems
